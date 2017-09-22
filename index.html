@@ -1,0 +1,51 @@
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Sweet 16</title>
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="public/simple-grid.min.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div id="awesome-gif"></div>
+          <div class="info">
+            Dolfijnstraat 84, 2018 Antwerpen
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    var gifs = [
+      "carlton.gif",
+      "dancingdog.gif",
+      "djcat.gif"
+    ];
+
+    var gif = gifs[Math.floor(Math.random()*gifs.length)];
+
+    var imageElement = document.createElement("img");
+    imageElement.setAttribute("src", "public/images/"+gif);
+
+    document.getElementById("awesome-gif").append(imageElement);
+  </script>
+
+  <style type="text/css">
+    #awesome-gif {
+      text-align: center;
+    }
+    .info {
+      text-align: center;
+    }
+  </style>
+</html>
+
