@@ -9,6 +9,9 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="public/simple-grid.min.css">
+    <link rel="stylesheet" href="public/flipclock.css">
+
+    <!-- JS Files -->
   </head>
 
   <body>
@@ -17,7 +20,30 @@
         <div class="col-12">
           <div id="awesome-gif"></div>
           <div class="info">
+            <p>
             Dolfijnstraat 84, 2018 Antwerpen
+            </p>
+            <p>
+            14 oktober - Vanaf 9u
+            </p>
+            <div id="clockdiv">
+              <div>
+                <span class="days"></span>
+                <div class="smalltext">Dagen</div>
+              </div>
+              <div>
+                <span class="hours"></span>
+                <div class="smalltext">Uren</div>
+              </div>
+              <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minuten</div>
+              </div>
+              <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Sec</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -37,6 +63,50 @@
     imageElement.setAttribute("src", "public/images/"+gif);
 
     document.getElementById("awesome-gif").append(imageElement);
+
+    var date = new Date("October 14, 2017 21:00:00"); //Month Days, Year HH:MM:SS
+
+    function getTimeRemaining(endtime) {
+      var t = Date.parse(endtime) - Date.parse(new Date());
+      var seconds = Math.floor((t / 1000) % 60);
+      var minutes = Math.floor((t / 1000 / 60) % 60);
+      var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+      var days = Math.floor(t / (1000 * 60 * 60 * 24));
+      return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+    }
+
+    function initializeClock(id, endtime) {
+      var clock = document.getElementById(id);
+      var daysSpan = clock.querySelector('.days');
+      var hoursSpan = clock.querySelector('.hours');
+      var minutesSpan = clock.querySelector('.minutes');
+      var secondsSpan = clock.querySelector('.seconds');
+
+      function updateClock() {
+        var t = getTimeRemaining(date);
+
+        daysSpan.innerHTML = t.days;
+        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+        if (t.total <= 0) {
+          clearInterval(timeinterval);
+        }
+      }
+
+      updateClock();
+      var timeinterval = setInterval(updateClock, 1000);
+    }
+
+    var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+    initializeClock('clockdiv', deadline);
   </script>
 
   <style type="text/css">
@@ -45,6 +115,34 @@
     }
     .info {
       text-align: center;
+    }
+
+    #clockdiv{
+      font-family: sans-serif;
+      color: #fff;
+      display: inline-block;
+      font-weight: 100;
+      text-align: center;
+      font-size: 25px;
+    }
+
+    #clockdiv > div{
+      padding: 5px;
+      border-radius: 3px;
+      background: #bad2ff;
+      display: inline-block;
+    }
+
+    #clockdiv div > span{
+      padding: 10px;
+      border-radius: 3px;
+      background: #7ca0e2;
+      display: inline-block;
+    }
+
+    .smalltext{
+      padding-top: 5px;
+      font-size: 16px;
     }
   </style>
 </html>
