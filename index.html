@@ -9,7 +9,6 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="public/simple-grid.min.css">
-    <link rel="stylesheet" href="public/flipclock.css">
 
     <!-- JS Files -->
   </head>
@@ -17,14 +16,17 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 wrapper">
+          <h4>
+            Lewis & David worden opnieuw 16!
+          </h4>
           <div id="awesome-gif"></div>
           <div class="info">
             <p>
-            Dolfijnstraat 84, 2018 Antwerpen
+              Dolfijnstraat 84, 2018 Antwerpen
             </p>
             <p>
-            14 oktober - Vanaf 9u
+              14 oktober - Vanaf 21u
             </p>
             <div id="clockdiv">
               <div>
@@ -110,9 +112,15 @@
   </script>
 
   <style type="text/css">
-    #awesome-gif {
+    .wrapper {
       text-align: center;
     }
+
+    img {
+      max-width:100%;
+      max-height:100%;
+    }
+
     .info {
       text-align: center;
     }
